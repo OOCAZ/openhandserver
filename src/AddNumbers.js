@@ -4,17 +4,22 @@ import React from 'react';
 
 function App() {
 
-const [numbers, setNumbers] = React.useState([])
-
   return (
     <div className="App">
       <header className="App-header">
         <img src={openhandweb} alt="logo" />
         <h1>
-          Welcome to OpenHand!
+          Enter a number below to Add it!
         </h1>
+        <input></input>
+        <button>Click me to Add a number</button>
+        <h1>
+          Enter a number below to Remove it
+        </h1>
+        <input></input>
+        <button>Click me to Remove a number</button>
         <p>
-          Numbers Ready: {numbers}
+          Numbers Ready:
         </p>
         
       </header>

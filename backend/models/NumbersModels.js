@@ -2,8 +2,8 @@ const mongoose = require('mongoose');
 
 const numbersTemplate = new mongoose.Schema({
     number:{
-        type:int,
-        required:true
+        type: String,
+        required: true
     }
 })
 

@@ -1,3 +1,8 @@
+You need to create an env file in backend for making mongoDB connection:
+
+Example string: `DATABASE_ACCESS: mongodb+srv://<username>:<password>@clusteropenhand.hzmnsrq.mongodb.net/?retryWrites=true&w=majority`
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

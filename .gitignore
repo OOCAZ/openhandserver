@@ -1,15 +1,8 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 #backend includes
-/backend
-!backend/models/
-!backend/routes.js
-!backend/server.js
-!backend/package.json
-!backend/package-lock.json
 
 # dependencies
-/backend/node_modules
 /node_modules
 /.pnp
 .pnp.js
@@ -30,3 +23,7 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+backend/.env
+backend/node_modules/
+backend/http.test

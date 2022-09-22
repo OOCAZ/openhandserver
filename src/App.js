@@ -58,6 +58,7 @@ function App() {
     .then(response => console.log(response.status))
     setCurrentNumber('');
     getListNumbers();
+    window.location.reload(false);
     return
   }
 
@@ -71,6 +72,7 @@ function App() {
     
     setCurrentNumber('');
     getListNumbers();
+    window.location.reload(false);
     return
   }
 
@@ -82,8 +84,11 @@ function App() {
           Welcome to OpenHand!
         </h1>
         <h2>
-          Numbers Ready: {numbers}
+          Numbers Ready:
         </h2>
+        <h1>
+          {numbers}
+        </h1>
         <ThemeProvider theme={theme}>
           <TextField id="outlined-basic" label="Number" variant="outlined" onChange={handleChange} value={currentNumber} />
         </ThemeProvider>

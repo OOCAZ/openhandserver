@@ -4,12 +4,19 @@ import React, {useEffect} from 'react';
 import { Button, TextField, ThemeProvider, createTheme, ListItem, List } from '@mui/material';
 import Image from 'mui-image';
 import axios from 'axios';
+import CloseIcon from '@mui/icons-material/Close';
+import Alert from '@mui/material/Alert';
+import IconButton from '@mui/material/IconButton';
+import Collapse from '@mui/material/Collapse';
 
 function App() {
 
-  const [numbers, setNumbers] = React.useState([])
-  const [currentNumber, setCurrentNumber] = React.useState(String)
+  const [numbers, setNumbers] = React.useState([]);
+  const [currentNumber, setCurrentNumber] = React.useState(String);
+  const [lastNumber, setLastNumber] = React.useState(String);
   const [toggle, setToggle] = React.useState(true);
+  const [addOpen, setAddOpen] = React.useState(false);
+  const [removeOpen, setRemoveOpen] = React.useState(false);
 
   const handleToggle = () => {
     setToggle(!toggle);
@@ -17,7 +24,7 @@ function App() {
 
   async function fetchData() {
       try{
-      const res = await axios.get('http://localhost:4000/app/numbers');
+      const res = await axios.get(process.env.REACT_APP_URL + '/app/numbers');
                 var temp1 = ""
                 Object.entries(res.data).forEach((entry) => {
                   const [key, value] = entry;
@@ -54,11 +61,12 @@ function App() {
       number: currentNumber
     }
 
-    axios.post('http://localhost:4000/app/add', addNumber)
+    axios.post(process.env.REACT_APP_URL + '/app/add', addNumber)
     .then(response => console.log(response.status))
+    setLastNumber(currentNumber);
+    setAddOpen(true);
     setCurrentNumber('');
     getListNumbers();
-    window.location.reload(false);
     return
   }
 
@@ -67,12 +75,12 @@ function App() {
       number: currentNumber
     }
 
-    axios.post('http://localhost:4000/app/remove', removeNumber)
+    axios.post(process.env.REACT_APP_URL + '/app/remove', removeNumber)
     .then(response => console.log(response.status))
-    
+    setLastNumber(currentNumber);
+    setRemoveOpen(true);
     setCurrentNumber('');
     getListNumbers();
-    window.location.reload(false);
     return
   }
 
@@ -90,6 +98,44 @@ function App() {
           {numbers}
         </h1>
         <ThemeProvider theme={theme}>
+          <Collapse in={addOpen}>
+            <Alert
+              action={
+                <IconButton
+                  aria-label="close"
+                  color="inherit"
+                  size="small"
+                  onClick={() => {
+                    setAddOpen(false);
+                  }}
+                >
+                  <CloseIcon fontSize="inherit" />
+                </IconButton>
+              }
+              sx={{ mb: 2 }}
+            >
+              Successfully added the number: {lastNumber}
+            </Alert>
+          </Collapse>
+          <Collapse in={removeOpen}>
+            <Alert
+              action={
+                <IconButton
+                  aria-label="close"
+                  color="inherit"
+                  size="small"
+                  onClick={() => {
+                    setRemoveOpen(false);
+                  }}
+                >
+                  <CloseIcon fontSize="inherit" />
+                </IconButton>
+              }
+              sx={{ mb: 2 }}
+            >
+              Successfully removed the number: {lastNumber}
+            </Alert>
+          </Collapse>
           <TextField id="outlined-basic" label="Number" variant="outlined" onChange={handleChange} value={currentNumber} />
         </ThemeProvider>
         <Button variant="contained" sx={{mt: 2}} onClick={onAddNumber}>Add Number</Button>

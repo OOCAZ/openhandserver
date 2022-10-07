@@ -1,6 +1,6 @@
 You need to create an env file in backend for making mongoDB connection:
 
-Example string: `DATABASE_ACCESS: mongodb+srv://<username>:<password>@clusteropenhand.hzmnsrq.mongodb.net/?retryWrites=true&w=majority`
+Example string: `DATABASE_ACCESS: mongodb+srv://<username>:<password>@<clustername>/?retryWrites=true&w=majority`
 
 Additionally you need to create a .env file at the top level with the variable REACT_APP_URL giving the operating environment for your app.
 

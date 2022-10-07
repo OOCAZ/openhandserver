@@ -17,13 +17,15 @@ function App() {
 
   async function fetchData() {
       try{
-      const res = await axios.get('http://localhost:4000/app/numbers');
+        console.log(process.env.REACT_APP_URL)
+      const res = await axios.get( process.env.REACT_APP_URL + '/app/numbers');
                 var temp1 = ""
                 Object.entries(res.data).forEach((entry) => {
                   const [key, value] = entry;
                   temp1 = temp1 + " " + value.number.toString()
                 });
                 setNumbers(temp1);
+                console.log(numbers)
             } catch (err) {
                 console.log(err);
             }
@@ -54,7 +56,7 @@ function App() {
       number: currentNumber
     }
 
-    axios.post('http://localhost:4000/app/add', addNumber)
+    axios.post( process.env.REACT_APP_URL + '/app/add', addNumber)
     .then(response => console.log(response.status))
     setCurrentNumber('');
     getListNumbers();
@@ -67,7 +69,7 @@ function App() {
       number: currentNumber
     }
 
-    axios.post('http://localhost:4000/app/remove', removeNumber)
+    axios.post( process.env.REACT_APP_URL + '/app/remove', removeNumber)
     .then(response => console.log(response.status))
     
     setCurrentNumber('');

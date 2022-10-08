@@ -29,3 +29,6 @@ backend/.env
 backend/node_modules/
 backend/http.test
 backend/test.http
+
+#running on env
+run.sh

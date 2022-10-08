@@ -1,7 +1,7 @@
 import openhandweb from './openhandweb.png'
 import './App.css';
 import React, {useEffect} from 'react';
-import { Button, TextField, ThemeProvider, createTheme, ListItem, List } from '@mui/material';
+import { Button, TextField, ThemeProvider, createTheme } from '@mui/material';
 import Image from 'mui-image';
 import axios from 'axios';
 import CloseIcon from '@mui/icons-material/Close';
@@ -28,7 +28,8 @@ function App() {
                 var temp1 = ""
                 Object.entries(res.data).forEach((entry) => {
                   const [key, value] = entry;
-                  temp1 = temp1 + " " + value.number.toString()
+                  console.log(key)
+                  temp1 = temp1 + value.number.toString() + ", "
                 });
                 setNumbers(temp1);
             } catch (err) {
@@ -67,6 +68,7 @@ function App() {
     setAddOpen(true);
     setCurrentNumber('');
     getListNumbers();
+    handleToggle();
     return
   }
 

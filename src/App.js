@@ -1,13 +1,14 @@
 import openhandweb from './openhandweb.png'
 import './App.css';
 import React, {useEffect} from 'react';
-import { Button, TextField, ThemeProvider, createTheme } from '@mui/material';
+import { Button, TextField, ThemeProvider, createTheme, Typography } from '@mui/material';
 import Image from 'mui-image';
 import axios from 'axios';
 import CloseIcon from '@mui/icons-material/Close';
 import Alert from '@mui/material/Alert';
 import IconButton from '@mui/material/IconButton';
 import Collapse from '@mui/material/Collapse';
+import Countdown from 'react-countdown';
 
 function App() {
 
@@ -141,8 +142,11 @@ function App() {
           </Collapse>
           <TextField id="outlined-basic" label="Number" variant="outlined" onChange={handleChange} value={currentNumber} />
         </ThemeProvider>
+        
         <Button variant="contained" sx={{mt: 2}} onClick={onAddNumber}>Add Number</Button>
         <Button variant="contained" sx={{mt: 2}} onClick={onRemoveNumber}>Remove Number</Button>
+        <Typography sx={{m: 2}} variant="h4">Countdown to Refresh:</Typography>
+        <Countdown date={Date.now() + 120000} />
       </header>
       
     </div>

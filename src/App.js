@@ -83,6 +83,7 @@ function App() {
     setRemoveOpen(true);
     setCurrentNumber('');
     getListNumbers();
+    handleToggle();
     return
   }
 

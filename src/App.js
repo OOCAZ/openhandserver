@@ -96,6 +96,9 @@ function App() {
           Welcome to OpenHand!
         </h1>
         <h2>
+          Stay as long as you want, we love talking to you!
+        </h2>
+        <h2>
           Numbers Ready:
         </h2>
         <h1>

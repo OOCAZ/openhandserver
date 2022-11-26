@@ -105,7 +105,7 @@ function App() {
           {numbers}
         </h1>
         <Typography sx={{m: 2}} variant="h6">Countdown to Refresh:</Typography>
-        <Countdown style={{marginBottom:40}} date={Date.now() + 120000} />
+        <Countdown style={{marginBottom:40}} date={Date.now() + 30000} />
         <Typography sx={{m:2}}> </Typography>
         <ThemeProvider theme={theme}>
           <Collapse in={addOpen}>
@@ -150,6 +150,7 @@ function App() {
         </ThemeProvider>
         <Button variant="contained" sx={{mt: 2}} onClick={onAddNumber}>Add Number</Button>
         <Button variant="contained" sx={{mt: 2}} onClick={onRemoveNumber}>Remove Number</Button>
+        <Button variant="contained" sx={{mt: 2}} onClick={getListNumbers}>Manual Refresh</Button>
       </header>
       
     </div>

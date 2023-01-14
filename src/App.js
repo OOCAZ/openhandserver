@@ -93,7 +93,7 @@ function App() {
       <header className="App-header">
         <Image src={openhandweb} width="30vh"/>
         <h1>
-          Welcome to OpenHand!
+          Good Morning 🌞 Welcome to OpenHand!
         </h1>
         <h2>
           Stay as long as you want, we love talking to you!

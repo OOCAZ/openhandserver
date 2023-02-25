@@ -25,7 +25,7 @@ function App() {
 
   async function fetchData() {
       try{
-      const res = await axios.get(process.env.REACT_APP_URL + '/app/numbers');
+      const res = await axios.get(process.env.REACT_APP_BACKEND_URL + '/app/numbers');
                 var temp1 = ""
                 Object.entries(res.data).forEach((entry) => {
                   const [key, value] = entry;
@@ -63,7 +63,7 @@ function App() {
       number: currentNumber
     }
 
-    axios.post(process.env.REACT_APP_URL + '/app/add', addNumber)
+    axios.post(process.env.REACT_APP_BACKEND_URL + '/app/add', addNumber)
     .then(response => console.log(response.status))
     setLastNumber(currentNumber);
     setAddOpen(true);
@@ -78,7 +78,7 @@ function App() {
       number: currentNumber
     }
 
-    axios.post(process.env.REACT_APP_URL + '/app/remove', removeNumber)
+    axios.post(process.env.REACT_APP_BACKEND_URL + '/app/remove', removeNumber)
     .then(response => console.log(response.status))
     setLastNumber(currentNumber);
     setRemoveOpen(true);

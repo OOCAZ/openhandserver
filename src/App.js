@@ -18,6 +18,7 @@ function App() {
   const [toggle, setToggle] = React.useState(true);
   const [addOpen, setAddOpen] = React.useState(false);
   const [removeOpen, setRemoveOpen] = React.useState(false);
+  const [numberAlready, setNumberAlready] = React.useState(false);
 
   const handleToggle = () => {
     setToggle(!toggle);
@@ -29,7 +30,6 @@ function App() {
                 var temp1 = ""
                 Object.entries(res.data).forEach((entry) => {
                   const [key, value] = entry;
-                  console.log(key)
                   temp1 = temp1 + value.number.toString() + ", "
                 });
                 setNumbers(temp1);
@@ -108,6 +108,25 @@ function App() {
         <Countdown style={{marginBottom:40}} date={Date.now() + 30000} />
         <Typography sx={{m:2}}> </Typography>
         <ThemeProvider theme={theme}>
+        <Collapse in={numberAlready}>
+            <Alert
+              action={
+                <IconButton
+                  aria-label="close"
+                  color="inherit"
+                  size="small"
+                  onClick={() => {
+                    setNumberAlready(false);
+                  }}
+                >
+                  <CloseIcon fontSize="inherit" />
+                </IconButton>
+              }
+              sx={{ mb: 2 }}
+            >
+              The number is already on the list: {lastNumber}
+            </Alert>
+          </Collapse>
           <Collapse in={addOpen}>
             <Alert
               action={

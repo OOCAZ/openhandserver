@@ -18,6 +18,7 @@ function App() {
   const [toggle, setToggle] = React.useState(true);
   const [addOpen, setAddOpen] = React.useState(false);
   const [removeOpen, setRemoveOpen] = React.useState(false);
+  const [numberAlready, setNumberAlready] = React.useState(false);
 
   const handleToggle = () => {
     setToggle(!toggle);
@@ -25,11 +26,10 @@ function App() {
 
   async function fetchData() {
       try{
-      const res = await axios.get(process.env.REACT_APP_URL + '/app/numbers');
+      const res = await axios.get(process.env.REACT_APP_BACKEND_URL + '/app/numbers');
                 var temp1 = ""
                 Object.entries(res.data).forEach((entry) => {
                   const [key, value] = entry;
-                  console.log(key)
                   temp1 = temp1 + value.number.toString() + ", "
                 });
                 setNumbers(temp1);
@@ -63,7 +63,7 @@ function App() {
       number: currentNumber
     }
 
-    axios.post(process.env.REACT_APP_URL + '/app/add', addNumber)
+    axios.post(process.env.REACT_APP_BACKEND_URL + '/app/add', addNumber)
     .then(response => console.log(response.status))
     setLastNumber(currentNumber);
     setAddOpen(true);
@@ -78,7 +78,7 @@ function App() {
       number: currentNumber
     }
 
-    axios.post(process.env.REACT_APP_URL + '/app/remove', removeNumber)
+    axios.post(process.env.REACT_APP_BACKEND_URL + '/app/remove', removeNumber)
     .then(response => console.log(response.status))
     setLastNumber(currentNumber);
     setRemoveOpen(true);
@@ -93,7 +93,7 @@ function App() {
       <header className="App-header">
         <Image src={openhandweb} width="30vh"/>
         <h1>
-          Welcome to OpenHand!
+          Good Morning 🌞 Welcome to OpenHand!
         </h1>
         <h2>
           Stay as long as you want, we love talking to you!
@@ -105,9 +105,28 @@ function App() {
           {numbers}
         </h1>
         <Typography sx={{m: 2}} variant="h6">Countdown to Refresh:</Typography>
-        <Countdown style={{marginBottom:40}} date={Date.now() + 120000} />
+        <Countdown style={{marginBottom:40}} date={Date.now() + 30000} />
         <Typography sx={{m:2}}> </Typography>
         <ThemeProvider theme={theme}>
+        <Collapse in={numberAlready}>
+            <Alert
+              action={
+                <IconButton
+                  aria-label="close"
+                  color="inherit"
+                  size="small"
+                  onClick={() => {
+                    setNumberAlready(false);
+                  }}
+                >
+                  <CloseIcon fontSize="inherit" />
+                </IconButton>
+              }
+              sx={{ mb: 2 }}
+            >
+              The number is already on the list: {lastNumber}
+            </Alert>
+          </Collapse>
           <Collapse in={addOpen}>
             <Alert
               action={
@@ -150,6 +169,7 @@ function App() {
         </ThemeProvider>
         <Button variant="contained" sx={{mt: 2}} onClick={onAddNumber}>Add Number</Button>
         <Button variant="contained" sx={{mt: 2}} onClick={onRemoveNumber}>Remove Number</Button>
+        <Button variant="contained" sx={{mt: 2}} onClick={getListNumbers}>Manual Refresh</Button>
       </header>
       
     </div>
